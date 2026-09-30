@@ -1,0 +1,126 @@
+   1400010d4:	cc                   	int3
+   1400010d5:	cc                   	int3
+   1400010d6:	cc                   	int3
+   1400010d7:	cc                   	int3
+   1400010d8:	cc                   	int3
+   1400010d9:	cc                   	int3
+   1400010da:	cc                   	int3
+   1400010db:	cc                   	int3
+   1400010dc:	cc                   	int3
+   1400010dd:	cc                   	int3
+   1400010de:	cc                   	int3
+   1400010df:	cc                   	int3
+   1400010e0:	48 89 5c 24 08       	mov    QWORD PTR [rsp+0x8],rbx
+   1400010e5:	8b d9                	mov    ebx,ecx
+   1400010e7:	45 8b d1             	mov    r10d,r9d
+   1400010ea:	41 f7 d1             	not    r9d
+   1400010ed:	41 c1 e2 0f          	shl    r10d,0xf
+   1400010f1:	45 03 d1             	add    r10d,r9d
+   1400010f4:	44 8b da             	mov    r11d,edx
+   1400010f7:	41 8b c2             	mov    eax,r10d
+   1400010fa:	c1 e8 0c             	shr    eax,0xc
+   1400010fd:	41 33 c2             	xor    eax,r10d
+   140001100:	49 ba 95 e9 d1 5b 93 	movabs r10,0xc6a4a7935bd1e995
+   140001107:	a7 a4 c6 
+   14000110a:	8d 04 80             	lea    eax,[rax+rax*4]
+   14000110d:	8b c8                	mov    ecx,eax
+   14000110f:	c1 e9 04             	shr    ecx,0x4
+   140001112:	33 c8                	xor    ecx,eax
+   140001114:	69 c1 09 08 00 00    	imul   eax,ecx,0x809
+   14000111a:	8b c8                	mov    ecx,eax
+   14000111c:	48 c1 e8 10          	shr    rax,0x10
+   140001120:	48 33 c1             	xor    rax,rcx
+   140001123:	41 8b c8             	mov    ecx,r8d
+   140001126:	49 0f af c2          	imul   rax,r10
+   14000112a:	c1 e1 0f             	shl    ecx,0xf
+   14000112d:	41 f7 d0             	not    r8d
+   140001130:	41 03 c8             	add    ecx,r8d
+   140001133:	48 8b d0             	mov    rdx,rax
+   140001136:	48 c1 ea 2f          	shr    rdx,0x2f
+   14000113a:	48 33 d0             	xor    rdx,rax
+   14000113d:	48 b8 b9 90 6a 28 4d 	movabs rax,0x35a98f4d286a90b9
+   140001144:	8f a9 35 
+   140001147:	48 0f af d0          	imul   rdx,rax
+   14000114b:	8b c1                	mov    eax,ecx
+   14000114d:	c1 e8 0c             	shr    eax,0xc
+   140001150:	33 c1                	xor    eax,ecx
+   140001152:	8d 04 80             	lea    eax,[rax+rax*4]
+   140001155:	8b c8                	mov    ecx,eax
+   140001157:	c1 e9 04             	shr    ecx,0x4
+   14000115a:	33 c8                	xor    ecx,eax
+   14000115c:	69 c1 09 08 00 00    	imul   eax,ecx,0x809
+   140001162:	8b c8                	mov    ecx,eax
+   140001164:	48 c1 e8 10          	shr    rax,0x10
+   140001168:	48 33 c1             	xor    rax,rcx
+   14000116b:	41 8b cb             	mov    ecx,r11d
+   14000116e:	49 0f af c2          	imul   rax,r10
+   140001172:	c1 e1 0f             	shl    ecx,0xf
+   140001175:	41 f7 d3             	not    r11d
+   140001178:	4c 8b c0             	mov    r8,rax
+   14000117b:	41 03 cb             	add    ecx,r11d
+   14000117e:	49 c1 e8 2f          	shr    r8,0x2f
+   140001182:	4c 33 c0             	xor    r8,rax
+   140001185:	8b c1                	mov    eax,ecx
+   140001187:	c1 e8 0c             	shr    eax,0xc
+   14000118a:	33 c1                	xor    eax,ecx
+   14000118c:	4d 0f af c2          	imul   r8,r10
+   140001190:	8d 04 80             	lea    eax,[rax+rax*4]
+   140001193:	8b c8                	mov    ecx,eax
+   140001195:	4c 33 c2             	xor    r8,rdx
+   140001198:	c1 e9 04             	shr    ecx,0x4
+   14000119b:	33 c8                	xor    ecx,eax
+   14000119d:	69 c1 09 08 00 00    	imul   eax,ecx,0x809
+   1400011a3:	4d 0f af c2          	imul   r8,r10
+   1400011a7:	8b c8                	mov    ecx,eax
+   1400011a9:	48 c1 e8 10          	shr    rax,0x10
+   1400011ad:	48 33 c1             	xor    rax,rcx
+   1400011b0:	8b cb                	mov    ecx,ebx
+   1400011b2:	49 0f af c2          	imul   rax,r10
+   1400011b6:	c1 e1 0f             	shl    ecx,0xf
+   1400011b9:	f7 d3                	not    ebx
+   1400011bb:	03 cb                	add    ecx,ebx
+   1400011bd:	4c 8b c8             	mov    r9,rax
+   1400011c0:	49 c1 e9 2f          	shr    r9,0x2f
+   1400011c4:	4c 33 c8             	xor    r9,rax
+   1400011c7:	8b c1                	mov    eax,ecx
+   1400011c9:	4d 0f af ca          	imul   r9,r10
+   1400011cd:	c1 e8 0c             	shr    eax,0xc
+   1400011d0:	33 c1                	xor    eax,ecx
+   1400011d2:	4d 33 c8             	xor    r9,r8
+   1400011d5:	4d 0f af ca          	imul   r9,r10
+   1400011d9:	8d 04 80             	lea    eax,[rax+rax*4]
+   1400011dc:	8b c8                	mov    ecx,eax
+   1400011de:	c1 e9 04             	shr    ecx,0x4
+   1400011e1:	33 c8                	xor    ecx,eax
+   1400011e3:	69 c1 09 08 00 00    	imul   eax,ecx,0x809
+   1400011e9:	8b c8                	mov    ecx,eax
+   1400011eb:	48 8b 5c 24 08       	mov    rbx,QWORD PTR [rsp+0x8]
+   1400011f0:	8b d0                	mov    edx,eax
+   1400011f2:	48 c1 ea 10          	shr    rdx,0x10
+   1400011f6:	48 33 d1             	xor    rdx,rcx
+   1400011f9:	49 0f af d2          	imul   rdx,r10
+   1400011fd:	48 8b c2             	mov    rax,rdx
+   140001200:	48 c1 e8 2f          	shr    rax,0x2f
+   140001204:	48 33 c2             	xor    rax,rdx
+   140001207:	49 0f af c2          	imul   rax,r10
+   14000120b:	49 33 c1             	xor    rax,r9
+   14000120e:	49 0f af c2          	imul   rax,r10
+   140001212:	c3                   	ret
+   140001213:	cc                   	int3
+   140001214:	cc                   	int3
+   140001215:	cc                   	int3
+   140001216:	cc                   	int3
+   140001217:	cc                   	int3
+   140001218:	cc                   	int3
+   140001219:	cc                   	int3
+   14000121a:	cc                   	int3
+   14000121b:	cc                   	int3
+   14000121c:	cc                   	int3
+   14000121d:	cc                   	int3
+   14000121e:	cc                   	int3
+   14000121f:	cc                   	int3
+   140001220:	48 89 5c 24 08       	mov    QWORD PTR [rsp+0x8],rbx
+   140001225:	48 89 6c 24 10       	mov    QWORD PTR [rsp+0x10],rbp
+   14000122a:	48 89 74 24 18       	mov    QWORD PTR [rsp+0x18],rsi
+   14000122f:	48 89 7c 24 20       	mov    QWORD PTR [rsp+0x20],rdi
+   140001234:	41 56                	push   r14

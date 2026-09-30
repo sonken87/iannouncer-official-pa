@@ -1,0 +1,10 @@
+{
+  "server": { "host": "127.0.0.1", "port": 5180 },
+  "wind_source": "open-meteo",
+  "open_meteo": { "base_url": "https://api.open-meteo.com", "model": "gfs_seamless" },
+  "stratawx": { "base_url": "" },
+  "simbrief": { "userid": "", "username": "" },
+  "winds": { "levels_ft": [5000, 10000, 18000, 24000, 30000, 34000, 38000, 41000] },
+  "uplink": { "pmdg737_dir": "", "ifly737max_dir": "", "json_dir": "out" },
+  "airport_db": "airport-db.data.json"
+}
