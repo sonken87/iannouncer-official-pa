@@ -1,0 +1,15 @@
+diff --git a/disassembler/generate_profiles.py b/disassembler/generate_profiles.py
+index d7a2589..4bffe75 100644
+--- a/disassembler/generate_profiles.py
++++ b/disassembler/generate_profiles.py
+@@ -406,8 +406,8 @@ def parse_runtime_names(source: str, leaptiering: bool) -> list[str]:
+         definitions.append("#define V8_ENABLE_LEAPTIERING 1")
+     expansion = """
+ OFFLINE_RUNTIME_BEGIN
+-#define OFFLINE_F(name, nargs, ressize) OFFLINE_RUNTIME(name)
+-#define OFFLINE_I(name, nargs, ressize) OFFLINE_RUNTIME(name)
++#define OFFLINE_F(name, ...) OFFLINE_RUNTIME(name)
++#define OFFLINE_I(name, ...) OFFLINE_RUNTIME(name)
+ FOR_EACH_INTRINSIC(OFFLINE_F)
+ FOR_EACH_INLINE_INTRINSIC(OFFLINE_I)
+ OFFLINE_RUNTIME_END
