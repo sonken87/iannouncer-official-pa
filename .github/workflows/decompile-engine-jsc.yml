@@ -1,0 +1,111 @@
+# Decompile engine.jsc (V8 15.2 / Electron 44 bytecode) using xqy2006/jsc2js.
+#
+# The file was serialized by Electron 44.5.0 on win32/x64 (V8 15.2.124.x).
+# A Linux d8 rejects/aborts on this Windows-produced code cache, so the
+# disassembly step runs on a Windows runner with the matching patched d8.
+#
+# Outputs (as workflow artifacts):
+#   engine.bytecode.txt  - V8 Ignition bytecode disassembly (from patched d8)
+#   engine.js            - approximate JavaScript reconstruction (from View8)
+#
+# Note: the recovered source is copyrighted by StrataWx. Use for your own
+# analysis/interoperability only; do not redistribute it.
+
+name: decompile-engine-jsc
+
+on:
+  workflow_dispatch:
+    inputs:
+      v8_tag:
+        description: "jsc2js d8 release tag (V8 version). Try neighbours if one aborts."
+        default: "15.2.124.28"
+        type: string
+      jsc_path:
+        description: "Path to the .jsc file in the repo"
+        default: "engine.jsc"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  disassemble-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repo (for the .jsc)
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Clone jsc2js (patched d8 + customized View8)
+        run: git clone --depth 1 https://github.com/xqy2006/jsc2js jsc2js
+
+      - name: Download matching patched d8 (Windows)
+        shell: pwsh
+        run: |
+          $tag = "${{ inputs.v8_tag }}"
+          $url = "https://github.com/xqy2006/jsc2js/releases/download/$tag/d8-$tag-windows.zip"
+          Write-Host "Downloading $url"
+          Invoke-WebRequest -Uri $url -OutFile d8-windows.zip
+          Expand-Archive -Path d8-windows.zip -DestinationPath d8 -Force
+          Get-ChildItem d8
+
+      - name: Provide matching icudtl.dat (from Electron 44.5.0)
+        shell: pwsh
+        run: |
+          # Electron 44.5.0 ships the exact ICU data the V8 15.2 build expects.
+          npm i electron@44.5.0 --no-save --ignore-scripts | Out-Null
+          $icu = Get-ChildItem -Recurse -Filter icudtl.dat node_modules/electron 2>$null | Select-Object -First 1
+          if (-not $icu) {
+            # Fallback: fetch the Electron zip and extract icudtl.dat
+            $z = "https://github.com/electron/electron/releases/download/v44.5.0/electron-v44.5.0-win32-x64.zip"
+            Invoke-WebRequest -Uri $z -OutFile electron.zip
+            Expand-Archive -Path electron.zip -DestinationPath electron -Force
+            $icu = Get-ChildItem -Recurse -Filter icudtl.dat electron | Select-Object -First 1
+          }
+          Copy-Item $icu.FullName d8/icudtl.dat -Force
+          Write-Host "icudtl.dat: $($icu.FullName)"
+
+      - name: Disassemble with patched d8 (loadjsc)
+        shell: pwsh
+        run: |
+          $jsc = Resolve-Path "${{ inputs.jsc_path }}"
+          Copy-Item $jsc d8/target.jsc -Force
+          Push-Location d8
+          # d8 resolves icudtl.dat / snapshot_blob.bin from the working directory.
+          & ./d8.exe -e "loadjsc('target.jsc')" > ../engine.bytecode.txt 2> ../d8.err.txt
+          $code = $LASTEXITCODE
+          Pop-Location
+          Write-Host "d8 exit=$code"
+          Get-Content d8.err.txt -TotalCount 40
+          if ((Get-Item engine.bytecode.txt).Length -lt 100) {
+            Write-Error "Disassembly is empty; d8 likely rejected the cache. Try a neighbouring v8_tag."
+          }
+          Write-Host ("bytecode lines: " + (Get-Content engine.bytecode.txt).Count)
+
+      - name: Reconstruct JavaScript with View8
+        shell: pwsh
+        run: |
+          # jsc2js bundles a customized View8 that consumes the disassembly text.
+          # CLI: view8.py --disassembled <input_file> <output_file>
+          if (Test-Path jsc2js/View8/requirements.txt) {
+            python -m pip install -r jsc2js/View8/requirements.txt
+          }
+          python jsc2js/View8/view8.py --disassembled engine.bytecode.txt engine.js 2>&1 |
+            Tee-Object view8.log
+          if (Test-Path engine.js) { Write-Host ("engine.js size: " + (Get-Item engine.js).Length) }
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: engine-jsc-decompiled
+          path: |
+            engine.bytecode.txt
+            engine.js
+            d8.err.txt
+            view8.log
+          if-no-files-found: warn
