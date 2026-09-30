@@ -1,0 +1,422 @@
+================ jsctool 分析报告 ================
+文件: /home/user/iannouncer-official-pa/engine.jsc
+大小: 1949184 字节
+时间: 2026-09-30 11:56:43
+
+── ① V8 CachedData 头 ──
+V8 CachedData header
+  magic                     = 0xc0de06cf  (family 0xc0de0000, ext-ref-table bits 0x06cf)
+  version_hash              = 0x472058a6
+  source_hash              = 0x00138a24  (1280548 = original source length)
+  flag_hash                = 0xdae6e9eb
+  ro_snapshot_checksum     = 0x318e262a
+  payload_length           = 0x001dbde0  (1949152 bytes)
+  checksum[0]              = 0x00000000
+  checksum[1]              = 0x00000000
+  file_length              = 1949184 bytes
+  looks_like_v8_cache      = True
+  payload+header==file     = True (header 32 + payload 1949152 = 1949184)
+
+── ② V8 版本 ──
+version_hash = 0x472058a6
+扫描 8.x–16.x 匹配 version_hash（含 rapidhash/Wang 两种混合、常见 embedder）...
+  未在扫描范围内找到匹配（embedder 后缀可能不在候选内；已知本类文件为 Electron，version_hash 含 Electron 专属 embedder 串）。
+
+── ⑥/⑧ 提取的字符串常量分类 ──
+共提取字符串 18814 条（去重 16298 条）。
+
+【HTTP routes / paths】 53 条
+    //Nologoa
+    /OeRZS
+    /OpO
+    /ZHB
+    /_~n
+    /activity
+    /air-quality
+    /api/v1
+    /api/v1/weather/current
+    /archive
+    /arm
+    /atis
+    /avwx
+    /awc
+    /cavok
+    /cert
+    /clear
+    /control
+    /current
+    /cycles/
+    /datis
+    /depiction
+    /diag
+    /effects
+    /export-historic-winds
+    /forecast
+    /freeze
+    /gfs
+    /health
+    /historical
+    /lookahead
+    /metar/
+    /mode
+    /morph
+    /passive
+    /plan
+    /probe
+    /radar
+    /redemet
+    /refresh
+    /route
+    /sandbox
+    /simbrief
+    /sky-override
+    /smoothing
+    /stations/
+    /status
+    /target
+    /terminal
+    /tgftp
+    /units
+    /uplink-winds
+    /weather
+
+【URLs / hosts】 4 条
+    http://127.0.0.1:5173
+    http://localhost:5173
+    https://www.simbrief.com/api/xml.fetcher.php
+    https://wx.stratawxfs.org/wxE
+
+【License / seat symbols】 8 条
+     (licensed
+    , seat-bound
+    STRATAWX_LICENSE_KEY
+    STRATAWX_MACHINE_ID
+    application/vnd.marlin.drm.license+xml
+    no license key in env - weather unavailable (licensed proxy only)
+    x-stratawx-license
+    x-stratawx-machine
+
+【Weather / SimConnect symbols】 115 条
+    ID_CLOUD_STATE
+    METAR
+    PIREP
+    RecvCloudState
+    SIGMET
+    SimConnect
+    SimConnectConnection
+    SimConnectConstants
+    SimConnectDataType
+    SimConnectException
+    SimConnectPacketBuilder
+    SimConnectPeriod
+    SimConnectSocket
+    SimConnect_Port_IPv4a
+    Tafffff
+    Taffffff
+    WEATHER_INVALID_METAR
+    WEATHER_INVALID_PORT
+    WEATHER_UNABLE_TO_CREATE_STATION
+    WEATHER_UNABLE_TO_GET_OBSERVATION
+    WEATHER_UNABLE_TO_REMOVE_STATION
+    WeatherMode
+    airSigmetType
+    cloud
+    cloudCoverageCap
+    cloudDensityScale
+    cloudHighPct
+    cloudLayers
+    cloudLowPct
+    cloudMidPct
+    cloudPushes
+    cloudState
+    cloudType
+    cloud_cover
+    cloud_cover_high
+    cloud_cover_low
+    cloud_cover_mid
+    clouds
+    exportHistoricWinds
+    getCloudCoverageCap
+    getWorkerWindPinCapKt
+    maxCloudLayers
+    metar
+    metarStaleAfterMs
+    metarTtlMs
+    noLowCloud
+    rawAirSigmet
+    rawSigmet
+    setCloudCoverageCap
+    simConnectBuildMajor
+    simConnectBuildMinor
+    simConnectCfgIndex
+    simConnectVersionMajor
+    simConnectVersionMinor
+    simWindCapKt
+    simWindDirDeg
+    simWindDiverged
+    simWindKt
+    simWindPinned
+    simbrief
+    surfaceWindKt
+    surfaceWindOnly
+    tafTtlMs
+    uplinkWinds
+    weather
+    weatherCreateStationa
+    weatherCreateThermala
+    weatherObservation
+    weatherProxy
+    weatherRemoveStationa
+    weatherRemoveThermala
+    weatherRequestCloudStatea
+    weatherRequestInterpolatedObservation
+    weatherRequestObservationAtNearestStation
+    weatherRequestObservationAtStation
+    weatherSetDynamicUpdateRate
+    weatherSetModeCustoma
+    weatherSetModeGlobala
+    weatherSetModeServera
+    weatherSetModeTheme
+    weatherSetObservation
+    weather_code
+    wind
+    wind10mUMs
+    wind10mVMs
+    windDirDeg
+    windKt
+    windLayers
+    windPinCapKt
+    windSpeedKt
+    windSpeedUnit
+    windUnitMeasured
+    wind_direction
+    wind_direction_
+    wind_direction_10m
+    wind_speed
+    wind_speed_
+    wind_speed_10m
+    wind_speed_unit
+    window
+    windows1250
+    windows1251
+    windows1252
+    windows1253
+    windows1254
+    windows1255
+    windows1256
+    windows1257
+    windows1258
+    windows31j
+    windows874
+    windows932
+    windows936
+    windows949
+    windows950
+
+【ENV / constant-style identifiers】 231 条
+    ACTION_NOT_FOUND
+    ALREADY_CREATED
+    ALREADY_SUBSCRIBED
+    APPROACH_LEG
+    APPROACH_TRANSITION
+    AVWX_RETAIN_MAX
+    BAND_EMA_ALPHA
+    BAND_EMA_MATCH_NM
+    BAND_EMA_POOL_MAX
+    BAND_EMA_STALE_MS
+    BIG_ENDIAN
+    CI_NAME
+    CLIENTDATAOFFSET_AUTO
+    CLIENT_DATA_REQUEST_FLAG_CHANGED
+    CLIENT_DATA_REQUEST_FLAG_DEFAULT
+    CLIENT_DATA_REQUEST_FLAG_TAGGED
+    CLIENT_DATA_TYPE_FLOAT32
+    CLIENT_DATA_TYPE_FLOAT64
+    CLIENT_DATA_TYPE_INT16
+    CLIENT_DATA_TYPE_INT32
+    CLIENT_DATA_TYPE_INT64
+    CLIENT_DATA_TYPE_INT8
+    CREATE_OBJECT_FAILED
+    CSCRIPT_EXPECTED_OUTPUT
+    CSCRIPT_NOT_FOUND
+    DATA_ERROR
+    DATA_REQUEST_FLAG_CHANGED
+    DATA_REQUEST_FLAG_DEFAULT
+    DATUM_ID
+    DEBUG_FD
+    DEBUG_MIME
+    DEFAULT_CAPACITY
+    DEFAULT_ENDIAN
+    DEFAULT_NOASSERT
+    DEFINITION_ERROR
+    DUPLICATE_ID
+    ENROUTE_TRANSITION
+    ERR_PROTO_ACCESS
+    EVENT_FLAG_DEFAULT
+    EVENT_FLAG_FAST_REPEAT_TIMER
+    EVENT_FLAG_GROUPID_IS_PRIORITY
+    EVENT_FLAG_SLOW_REPEAT_TIMER
+    EVENT_ID_DUPLICATE
+    FINAL_APPROACH_LEG
+    FORCE_COLOR
+    FSX_RTM
+    FSX_SP1
+    FSX_SP2
+    GET_INPUT_EVENT_FAILED
+    GITHUB_ACTIONS
+    GITLAB_CI
+    HAS_DME
+    HAS_GLIDE_SLOPE
+    HAS_LOCALIZER
+    HAS_NAV_SIGNAL
+    ID_ACTION_CALLBACK
+    ID_AIRPORT_LIST
+    ID_ASSIGNED_OBJECT_ID
+    ID_CLIENT_DATA
+    ID_CLOUD_STATE
+    ID_CONTROLLERS_LIST
+    ID_CUSTOM_ACTION
+    ID_ENUMERATE_INPUT_EVENTS
+    ID_ENUMERATE_INPUT_EVENT_PARAMS
+    ID_EVENT
+    ID_EVENT_EX1
+    ID_EVENT_FILENAME
+    ID_EVENT_FRAME
+    ID_EVENT_MULTIPLAYER_CLIENT_STARTED
+    ID_EVENT_MULTIPLAYER_SERVER_STARTED
+    ID_EVENT_MULTIPLAYER_SESSION_ENDED
+    ID_EVENT_OBJECT_ADDREMOVE
+    ID_EVENT_RACE_END
+    ID_EVENT_RACE_LAP
+    ID_EVENT_WEATHER_MODE
+    ID_EXCEPTION
+    ID_FACILITY_DATA
+    ID_FACILITY_DATA_END
+    ID_FACILITY_MINIMAL_LIST
+    ID_GET_INPUT_EVENT
+    ID_JETWAY_DATA
+    ID_NDB_LIST
+    ID_NULL
+    ID_OPEN
+    ID_QUIT
+    ID_RESERVED_KEY
+    ID_SIMOBJECT_DATA
+    ID_SIMOBJECT_DATA_BYTYPE
+    ID_SUBSCRIBE_INPUT_EVENT
+    ID_SYSTEM_STATE
+    ID_VOR_LIST
+    ID_WAYPOINT_LIST
+    ID_WEATHER_OBSERVATION
+    ILLEGAL_OPERATION
+    INCORRECT_ACTION_PARAMS
+    INITPOSITION_AIRSPEED_CRUISE
+    INITPOSITION_AIRSPEED_KEEP
+    INVALID_ARRAY
+    INVALID_DATA_SIZE
+    INVALID_DATA_TYPE
+    INVALID_ENUM
+    INVALID_INPUT
+    INVALID_QUERY
+    JETWAY_DATA
+    LITTLE_ENDIAN
+    LOAD_FLIGHTPLAN_FAILED
+    MAX_CODEPOINT
+    MAX_METAR_LENGTH
+    MAX_PATH
+    MAX_THERMAL_RATE
+    MAX_THERMAL_SIZE
+    MAX_UNSIGNED_VALUE
+    MAX_VARINT32_BYTES
+    MAX_VARINT64_BYTES
+    MENU_SELECT_1
+    MENU_SELECT_10
+    MENU_SELECT_2
+    MENU_SELECT_3
+    MENU_SELECT_4
+    MENU_SELECT_5
+    MENU_SELECT_6
+    MENU_SELECT_7
+    MENU_SELECT_8
+    MENU_SELECT_9
+    METRICS_BYTES
+    METRICS_CHARS
+    MISSED_APPROACH_LEG
+    MISSION_CRASHED
+    MISSION_FAILED
+    MISSION_SUCCEEDED
+    NAME_UNRECOGNIZED
+    NEG_ONE
+    NOT_AN_ACTION
+    NOT_FOUND
+    NOT_READY
+    NO_DATA
+    NO_DEPRECATION
+    NO_FALLBACK_STATIONS
+    OBJECT_AI
+    OBJECT_ATC
+    OBJECT_CONTAINER
+    OBJECT_ID_USER
+    OBJECT_OUTSIDE_REALITY_BUBBLE
+    OBJECT_SCHEDULE
+    ON_SET
+    OPERATION_INVALID_FOR_OJBECT_TYPE
+    OUT_OF_BOUNDS
+    PRINT_BLACK
+    PRINT_BLUE
+    PRINT_CYAN
+    PRINT_GREEN
+    PRINT_MAGENTA
+    PRINT_RED
+    PRINT_WHITE
+    PRINT_YELLOW
+    PROTO_VERSION
+    RECEIVE_SIZE
+    REG_BINARY
+    REG_MULTI_SZ
+    REG_NONE
+    REG_SZ
+    RUNWAY_TRANSITION
+    SCROLL_BLACK
+    SCROLL_BLUE
+    SCROLL_CYAN
+    SCROLL_GREEN
+    SCROLL_MAGENTA
+    SCROLL_RED
+    SCROLL_WHITE
+    SCROLL_YELLOW
+    SET_INPUT_EVENT_FAILED
+    SIM_FRAME
+    SIZE_MISMATCH
+    SOUND_SYSTEM_EVENT_DATA_MASTER
+    STRATAWX_APP_VERSION
+    STRATAWX_LICENSE_KEY
+    STRATAWX_MACHINE_ID
+    STRATAWX_MORPH
+    STRATAWX_PERTURB
+    STRATAWX_PERTURB_ROT
+    STRATAWX_PERTURB_SCALE
+    STRATAWX_ROT_WRITE_SCALE
+    TAXI_NAME
+    TAXI_PARKING
+    TAXI_PATH
+    TAXI_POINT
+    TEAMCITY_VERSION
+    TERM_PROGRAM
+    TERM_PROGRAM_VERSIONE
+    TEXT_RESULT_DISPLAYED
+    TEXT_RESULT_MENU_SELECT_1
+    TEXT_RESULT_MENU_SELECT_10
+    TEXT_RESULT_MENU_SELECT_2
+    TEXT_RESULT_MENU_SELECT_3
+    TEXT_RESULT_MENU_SELECT_4
+    TEXT_RESULT_MENU_SELECT_5
+    TEXT_RESULT_MENU_SELECT_6
+    TEXT_RESULT_MENU_SELECT_7
+    TEXT_RESULT_MENU_SELECT_8
+    TEXT_RESULT_MENU_SELECT_9
+    ... 其余 31 条见 .strings.txt
+
+── ④/⑤/⑦ 完整 Bytecode → 伪 JS ──
+需要匹配的 V8 运行时来反序列化 CachedData（这一步无法脱离 V8 完成，与语言无关）。
+本工具已完成不依赖运行时的阶段：头解析、版本扫描、常量池/字符串提取与分类。
+如需继续，请见仓库 analysis/decompile/ 中 v8asm 静态路线（待 V8 15.2 解析器补齐）。
